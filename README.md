@@ -2,9 +2,11 @@
 
 
 
-#### install traefik first
+#### enable ingress addon and install traefik with helm
 
 ```
+minikube addons enable ingress
+helm init
 helm install -f traefik-values.yaml --name lb --namespace kube-system stable/traefik 
 ```
 
