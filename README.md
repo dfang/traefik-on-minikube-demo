@@ -13,8 +13,8 @@ helm install -f traefik-values.yaml --name lb --namespace kube-system stable/tra
 create whoami deploments and expose as service  
 
 ```
-kubectl run echoserver --image=gcr.io/google_containers/echoserver:1.4 --port=8080 --replicas=5
-kubectl expose deployment echoserver --type=NodePort
+kubectl run whoami --image=emilevauge/whoami --port=80 --replicas=5
+kubectl expose deployment whoami --type=NodePort
 ```
 or
 
