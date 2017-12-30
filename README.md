@@ -2,7 +2,7 @@
 
 
 
-#### enable ingress addon and install traefik with helm
+#### 1. enable ingress addon and install traefik with helm
 
 ```
 minikube addons enable ingress
@@ -10,7 +10,7 @@ helm init
 helm install -f traefik-values.yaml --name lb --namespace kube-system stable/traefik 
 ```
 
-#### whoami demo
+#### 2. whoami demo
 
 create whoami deploments and expose as service  
 
@@ -30,14 +30,14 @@ create ingress for whoami
 kubectl create -f whoami.ingress.yaml
 ```
 
-#### Add dns records to /etc/hosts
+Add dns records to /etc/hosts
 
 ```
 echo "$(minikube ip) traefik-ui.minikube" | sudo tee -a /etc/hosts
 echo "$(minikube ip) whoami.minikube" | sudo tee -a /etc/hosts
 ```
 
-#### open http://whoami.minikube and refresh, watch Hostname  
+#### 3. open http://whoami.minikube, refresh and watch Hostname  
 
 ```
 open http://whoami.minikube
