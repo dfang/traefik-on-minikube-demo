@@ -1,0 +1,39 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: efk
+  annotations:
+  # kubernetes.io/ingress.class: traefik
+  namespace: kube-system
+spec:
+  rules:
+  - host: kibana.minikube
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: "kibana-logging"
+          servicePort: 5601
+  - host: grafana.minikube
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: "monitoring-grafana"
+          servicePort: 80
+  - host: kibana.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: "kibana-logging"
+          servicePort: 5601
+  - host: grafana.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: "monitoring-grafana"
+          servicePort: 80
+  
