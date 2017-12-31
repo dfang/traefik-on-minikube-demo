@@ -2,12 +2,10 @@
 
 
 
-#### 1. enable ingress addon and install traefik with helm
+#### 1. install traefik as daemonset
 
 ```
-minikube addons enable ingress
-helm init
-helm install -f traefik-values.yaml --name lb --namespace kube-system stable/traefik 
+kubectl apply -f https://raw.githubusercontent.com/containous/traefik/master/examples/k8s/traefik-ds.yaml
 ```
 
 #### 2. whoami demo
@@ -46,14 +44,4 @@ open http://whoami.minikube
 
 
 
-
-
-
-
-Note: there is no need to add annotation:
-  
-  ```
-  annotations:
-    # kubernetes.io/ingress.class: traefik
-  ```
-  at least, it didn't work on minikube version: v0.24.1 and kubectl version 1.8.4
+install traefik as daemonset, otherwise you need to use NodePort to access traefik dashboard. see this [issue](https://github.com/containous/traefik/issues/2633)
